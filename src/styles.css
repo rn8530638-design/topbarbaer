@@ -623,15 +623,16 @@
 
   /* ----- MOBILE: ≤768px ----- */
   @media (max-width:768px){
-    /* nav → hamburger */
+    /* nav → fixed solid bar + hamburger */
+    header.nav{position:fixed;top:0;left:0;right:0;width:100%;z-index:1000;background:rgba(0,0,0,.95)}
     .nav-links{display:none}
     .nav-phone{display:none}
     .nav-cta .btn{display:none}
     .burger{display:flex}
     .burger span{background:var(--accent)}
 
-    /* hero: text below centre (+90px) so the "Top Барбершоп" sign stays visible */
-    .hero{min-height:100svh;align-items:center}
+    /* hero: clear the fixed navbar (~70px), text below centre so the sign stays visible */
+    .hero{min-height:100svh;align-items:center;padding-top:70px}
     .hero-inner{text-align:center;transform:translateY(180px)}
     .hero .label{display:none}
     .hero h1{font-size:clamp(40px,11vw,64px);margin-top:0}
