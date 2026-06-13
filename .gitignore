@@ -1,0 +1,16 @@
+node_modules
+dist
+*.local
+.DS_Store
+
+# editor / tooling
+.claude
+.playwright-mcp
+
+# extraction + debug artifacts (not part of project)
+*.jpeg
+decoded_template.html
+uuid_map.txt
+extracted_assets
+Basic Hero.png
+Top Барбершоп.html
