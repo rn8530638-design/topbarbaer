@@ -49,28 +49,13 @@ export default function Splash() {
       transition: 'opacity 1.6s ease-in-out 0.2s',
       pointerEvents: fading ? 'none' : 'auto',
     }}>
-      <div style={{
-        width: '500px',
-        height: '300px',
-        backgroundImage: `url(${splashLogoUrl})`,
-        backgroundSize: 'contain',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-      }} />
-      <span style={{
-        position: 'absolute',
-        bottom: '48px',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        color: '#C9A84C',
-        fontSize: '11px',
-        letterSpacing: '0.35em',
-        textTransform: 'uppercase',
-        opacity: 0.7,
-        whiteSpace: 'nowrap',
-        animation: 'splashFloat 2.5s ease-in-out infinite',
-      }}>
-        Press Space or Scroll
+      <div
+        className="splash-logo"
+        style={{ backgroundImage: `url(${splashLogoUrl})` }}
+      />
+      <span className="splash-hint">
+        <span className="splash-hint-en">Press Space or Scroll</span>
+        <span className="splash-hint-ru">Нажмите или листайте</span>
       </span>
 
       <style>{`
@@ -78,6 +63,32 @@ export default function Splash() {
           0%   { transform: translateX(-50%) translateY(0px); }
           50%  { transform: translateX(-50%) translateY(-6px); }
           100% { transform: translateX(-50%) translateY(0px); }
+        }
+        .splash-logo {
+          width: clamp(240px, 50vw, 500px);
+          aspect-ratio: 5 / 3;
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: center;
+        }
+        .splash-hint {
+          position: absolute;
+          bottom: 48px;
+          left: 50%;
+          transform: translateX(-50%);
+          color: #C9A84C;
+          font-size: 11px;
+          letter-spacing: 0.35em;
+          text-transform: uppercase;
+          opacity: 0.7;
+          white-space: nowrap;
+          animation: splashFloat 2.5s ease-in-out infinite;
+        }
+        .splash-hint-ru { display: none; }
+        @media (max-width: 768px) {
+          .splash-hint { bottom: 36px; font-size: 10px; }
+          .splash-hint-en { display: none; }
+          .splash-hint-ru { display: inline; }
         }
       `}</style>
     </div>

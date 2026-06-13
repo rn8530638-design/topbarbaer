@@ -28,7 +28,7 @@ export default function Gallery() {
         <div className="gal-grid reveal">
           {items.map((it, i) => (
             <div className={it.cls} key={i}>
-              <img src={it.img} alt={it.alt} style={{ objectPosition: it.pos }} />
+              <img src={it.img} alt={it.alt} loading="lazy" decoding="async" style={{ objectPosition: it.pos }} />
             </div>
           ))}
         </div>

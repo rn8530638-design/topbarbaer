@@ -14,3 +14,9 @@ uuid_map.txt
 extracted_assets
 Basic Hero.png
 Top Барбершоп.html
+Hero-Mobile.png
+Hero-Planshet.png
+
+# orphaned source PNGs — replaced by WebP in src/assets
+src/assets/hero-mobile.png
+src/assets/hero-tablet.png

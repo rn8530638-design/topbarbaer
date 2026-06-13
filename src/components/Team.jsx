@@ -15,7 +15,7 @@ export default function Team() {
         <div className="team-grid">
           <div className="master reveal">
             <div className="master-photo">
-              <img src={masterAleksandr} alt="Александр — старший мастер Top Барбершоп" style={{ objectPosition: '50% 22%' }} />
+              <img src={masterAleksandr} alt="Александр — старший мастер Top Барбершоп" loading="lazy" decoding="async" style={{ objectPosition: '50% 22%' }} />
             </div>
             <div className="master-body">
               <span className="mono">А</span>
@@ -27,7 +27,7 @@ export default function Team() {
           </div>
           <div className="master reveal" data-d="1">
             <div className="master-photo">
-              <img src={masterDenis} alt="Денис — специалист по бороде и бритью опасной бритвой" style={{ objectPosition: '50% 22%' }} />
+              <img src={masterDenis} alt="Денис — специалист по бороде и бритью опасной бритвой" loading="lazy" decoding="async" style={{ objectPosition: '50% 22%' }} />
             </div>
             <div className="master-body">
               <span className="mono">Д</span>
@@ -39,7 +39,7 @@ export default function Team() {
           </div>
           <div className="master reveal" data-d="2">
             <div className="master-photo">
-              <img src={masterMaksim} alt="Максим — специалист по текстурным стрижкам и фейдам" style={{ objectPosition: '50% 22%' }} />
+              <img src={masterMaksim} alt="Максим — специалист по текстурным стрижкам и фейдам" loading="lazy" decoding="async" style={{ objectPosition: '50% 22%' }} />
             </div>
             <div className="master-body">
               <span className="mono">М</span>

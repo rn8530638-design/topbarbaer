@@ -1,10 +1,17 @@
 import heroImg from '../assets/hero.jpg'
+import heroMobile from '../assets/hero-mobile.webp'
+import heroTablet from '../assets/hero-tablet.webp'
 
 export default function Hero() {
   return (
     <section className="hero" id="top">
       <div className="hero-bg">
-        <img src={heroImg} alt="Интерьер Top Барбершоп — неоновая вывеска, кожаные кресла, зеркала с LED-подсветкой" />
+        {/* Responsive art direction: portrait 9:16 on mobile, 4:3 on tablet, wide on desktop */}
+        <picture>
+          <source media="(max-width:768px)" srcSet={heroMobile} />
+          <source media="(max-width:1024px)" srcSet={heroTablet} />
+          <img src={heroImg} alt="Интерьер Top Барбершоп — неоновая вывеска, кожаные кресла, зеркала с LED-подсветкой" />
+        </picture>
       </div>
       <div className="hero-inner">
         <span className="label reveal">Барбершоп в Москве</span>

@@ -31,14 +31,16 @@ export default function App() {
     <>
       <Splash />
       <Navbar />
-      <Hero />
-      {/* BLACK DIVIDER */}
-      <div className="section-divider" aria-hidden="true"></div>
-      <About />
-      <Services />
-      <Gallery />
-      <Team />
-      <Contacts />
+      <main>
+        <Hero />
+        {/* BLACK DIVIDER */}
+        <div className="section-divider" aria-hidden="true"></div>
+        <About />
+        <Services />
+        <Gallery />
+        <Team />
+        <Contacts />
+      </main>
     </>
   )
 }
