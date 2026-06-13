@@ -9,32 +9,46 @@ export default function Splash() {
   const dismiss = () => {
     if (dismissed.current) return
     dismissed.current = true
+    // 1) start opacity fade to 0
     setFading(true)
-    // Remove from DOM after fade completes — no overflow toggle, no scroll
-    setTimeout(() => setVisible(false), 1800)
+    // 2) wait for the transition to finish (1.6s + 0.2s delay = 1800ms)
+    setTimeout(() => {
+      // 3) make sure page is at the top — 'instant' overrides scroll-behavior:smooth
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+      // 4) remove splash from the DOM
+      setVisible(false)
+    }, 1800)
   }
 
   useEffect(() => {
-    // No body overflow manipulation — splash is position:fixed, content stays in place
+    // Only listen while the splash is on screen. Splash returns null after
+    // dismiss but stays mounted, so we key the effect on `visible`: when it
+    // flips to false the cleanup runs and the scroll-blocking listeners are
+    // removed — otherwise blockScroll's preventDefault would lock the page
+    // forever. No overflow toggling, so the scrollbar never disappears (= no jerk).
+    if (!visible) return
+
     const onKey = (e) => { if (e.code === 'Space') { e.preventDefault(); dismiss() } }
-    const onWheel = () => dismiss()
+    const blockScroll = (e) => { e.preventDefault(); e.stopPropagation(); dismiss() }
 
     let touchStartY = 0
     const onTouchStart = (e) => { touchStartY = e.touches[0].clientY }
     const onTouchEnd = (e) => { if (touchStartY - e.changedTouches[0].clientY > 30) dismiss() }
 
     window.addEventListener('keydown', onKey)
-    window.addEventListener('wheel', onWheel, { passive: true })
+    window.addEventListener('wheel', blockScroll, { passive: false })
+    window.addEventListener('touchmove', blockScroll, { passive: false })
     window.addEventListener('touchstart', onTouchStart, { passive: true })
     window.addEventListener('touchend', onTouchEnd, { passive: true })
 
     return () => {
       window.removeEventListener('keydown', onKey)
-      window.removeEventListener('wheel', onWheel)
+      window.removeEventListener('wheel', blockScroll)
+      window.removeEventListener('touchmove', blockScroll)
       window.removeEventListener('touchstart', onTouchStart)
       window.removeEventListener('touchend', onTouchEnd)
     }
-  }, [])
+  }, [visible])
 
   if (!visible) return null
 
